@@ -265,6 +265,14 @@ body {
     border-color: #fff transparent #fff transparent;
     animation: lds-dual-ring 1.2s linear infinite;
   }
+
+  .blog-error {
+    color: red;
+  }
+
+  .input-error {
+    border: solid 2px red;
+  }
   @keyframes lds-dual-ring {
     0% {
       transform: rotate(0deg);

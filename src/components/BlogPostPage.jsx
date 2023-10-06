@@ -13,7 +13,7 @@ const BlogPostPage = ({ isLoggedIn, currentUser, validateUserComment }) => {
     const [blogTitle, setBlogTitle] = useState('');
     const [blogContent, setBlogContent] = useState('');
     const [publishState, setPublishState] = useState('');
-
+    const [inputError, setInputError] = useState({for: '', error: ''});
     useEffect(() => {
 
         if (blogItem && blogItem.title && blogItem.content) {
@@ -23,20 +23,41 @@ const BlogPostPage = ({ isLoggedIn, currentUser, validateUserComment }) => {
         }
     },[blogItem])
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(blogTitle);
+        console.log(blogContent);
+        console.log(publishState);
+
+        if (blogTitle === '') {
+            setInputError({ for: 'title', error: 'Title is empty'});
+            return;
+        }
+
+        if (blogContent === '') {
+            setInputError({for: 'content', error: 'Post content is empty'});
+            return;
+        }
+
+        setInputError({for: '', error: ''});
+    }
+
     return (
         <div className="post-wrapper">
             {isLoading ? (
                 <div className="loading-spinner"></div>
             ) : (
-                <form className="blog-post-form"> 
+                <form className="blog-post-form" onSubmit={handleSubmit}> 
                     <div>
                         <label htmlFor="title">Title</label>
                         <input type="text" name="title" value={blogTitle} 
-                        onChange={(e) => setBlogTitle(e.target.value)} />
+                        onChange={(e) => setBlogTitle(e.target.value)}
+                        className={inputError.for === 'title' ? 'input-error' : ''} />
                     </div>
                     <div>
                         <label htmlFor="content">Content</label>
-                        <textarea name="content" cols="30" rows="10" value={blogContent} onChange={(e) => setBlogContent(e.target.value)}></textarea>
+                        <textarea name="content" cols="30" rows="10" value={blogContent} onChange={(e) => setBlogContent(e.target.value)}
+                        className={inputError.for === 'content' ? 'input-error' : ''}></textarea>
                     </div>
                     <div>
                     <label htmlFor="published">Published</label>
@@ -52,6 +73,7 @@ const BlogPostPage = ({ isLoggedIn, currentUser, validateUserComment }) => {
                     </div>
                     <button type="submit">Edit Post</button>
                     {/* <CommentSection isLoggedIn={isLoggedIn} currentUser={currentUser} validateUserComment={validateUserComment} blogItem={blogItem} comments={comments} setComments={setComments}/> */}
+                    <p className="blog-error">{inputError.error}</p>
                 </form>
             )}
         </div>
