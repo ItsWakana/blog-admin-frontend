@@ -14,7 +14,7 @@ function App() {
     currentUser,
     isLoggedIn,
     validateLogin,
-    validateUserComment,
+    validatePostEdit,
     handleLogOut
   } = useAuth(cookies);
 
@@ -35,7 +35,7 @@ function App() {
         },
         {
           path: "/posts/:postId",
-          element: <BlogPostPage isLoggedIn={isLoggedIn} currentUser={currentUser} validateUserComment={validateUserComment}/>
+          element: <BlogPostPage isLoggedIn={isLoggedIn} currentUser={currentUser} validatePostEdit={validatePostEdit} />
         }
       ]
     }

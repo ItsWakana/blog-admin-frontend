@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import CommentSection from "./CommentSection";
 
-const BlogPostPage = ({ isLoggedIn, currentUser, validateUserComment }) => {
+const BlogPostPage = ({ validatePostEdit }) => {
 
     const { postId } = useParams();
 
@@ -25,9 +25,6 @@ const BlogPostPage = ({ isLoggedIn, currentUser, validateUserComment }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(blogTitle);
-        console.log(blogContent);
-        console.log(publishState);
 
         if (blogTitle === '') {
             setInputError({ for: 'title', error: 'Title is empty'});
@@ -40,6 +37,10 @@ const BlogPostPage = ({ isLoggedIn, currentUser, validateUserComment }) => {
         }
 
         setInputError({for: '', error: ''});
+
+        const formattedPublish = publishState === 'published';
+        
+        validatePostEdit(blogTitle, blogContent, formattedPublish, postId);
     }
 
     return (

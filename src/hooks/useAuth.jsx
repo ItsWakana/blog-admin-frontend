@@ -46,6 +46,26 @@ const useAuth = (cookies) => {
         setIsLoggedIn(true);
     }
 
+    const validatePostEdit = async (title, content, isPublished, id) => {
+
+      const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": `Bearer ${cookies.get("token")}`
+        },
+        body: JSON.stringify({ title, content, isPublished })
+      });
+
+      if (response.status !== 200) {
+        console.log("post update failed");
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+    }
+
     const handleLogOut = async () => {
         cookies.remove("token");
 
@@ -57,6 +77,7 @@ const useAuth = (cookies) => {
         currentUser,
         isLoggedIn,
         validateLogin,
+        validatePostEdit,
         handleLogOut
     }
 }
