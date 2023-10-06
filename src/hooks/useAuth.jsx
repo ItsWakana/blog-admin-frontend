@@ -51,6 +51,7 @@ const useAuth = (cookies) => {
       const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
         method: "PUT",
         headers: {
+          "Content-Type": "application/json",
           "Authorization": `Bearer ${cookies.get("token")}`
         },
         body: JSON.stringify({ title, content, isPublished })
@@ -59,11 +60,9 @@ const useAuth = (cookies) => {
       if (response.status !== 200) {
         console.log("post update failed");
         return;
+      } else {
+        console.log("Post updated successfully");
       }
-
-      const data = await response.json();
-      console.log(data);
-
     }
 
     const handleLogOut = async () => {
