@@ -19,11 +19,10 @@ const BlogPostPage = ({ isLoggedIn, currentUser, validateUserComment }) => {
         if (blogItem && blogItem.title && blogItem.content) {
             setBlogTitle(blogItem.title);
             setBlogContent(blogItem.content);
-            setPublishState(blogItem.published.isPublished);
+            setPublishState(blogItem.published.isPublished ? 'published' : 'unpublished');
         }
     },[blogItem])
 
-    console.log(blogItem);
     return (
         <div className="post-wrapper">
             {isLoading ? (
@@ -39,17 +38,19 @@ const BlogPostPage = ({ isLoggedIn, currentUser, validateUserComment }) => {
                         <label htmlFor="content">Content</label>
                         <textarea name="content" cols="30" rows="10" value={blogContent} onChange={(e) => setBlogContent(e.target.value)}></textarea>
                     </div>
-                    <button type="submit">Edit Post</button>
                     <div>
                     <label htmlFor="published">Published</label>
                     <input type="radio" id="published" name="published_state" value="published" 
-                    checked={blogItem.published.isPublished}/>
+                    checked={publishState === "published"}
+                    onChange={(e) => setPublishState(e.target.value)}/>
                     </div>
                     <div>
                     <label htmlFor="unpublish">Unpublished</label>
-                    <input type="radio" id="unpublish" name="published_state" value="unpublish"
-                    checked={!blogItem.published.isPublished} />
+                    <input type="radio" id="unpublish" name="published_state" value="unpublished"
+                    checked={publishState === "unpublished"} 
+                    onChange={(e) => setPublishState(e.target.value)}/>
                     </div>
+                    <button type="submit">Edit Post</button>
                     {/* <CommentSection isLoggedIn={isLoggedIn} currentUser={currentUser} validateUserComment={validateUserComment} blogItem={blogItem} comments={comments} setComments={setComments}/> */}
                 </form>
             )}
