@@ -89,7 +89,8 @@ body {
   }
   
   .blog-post__button,
-  .blog-post__link {
+  .blog-post__link,
+  .blog-post__delete {
     background-color: var(--secondary-clr);
     padding: 10px 15px;
     border-radius: 3px;
@@ -99,8 +100,17 @@ body {
     text-decoration: none;
     color: black;
     font-size: 0.8rem;
+    border: solid 1px transparent;
   }
-  
+
+  .blog-post__delete {
+    border: solid 1px red;
+    background-color: transparent;
+    color: red;
+    border-radius: 3px;
+    margin-left: 8px;
+  }
+
   .blog-post__button:hover,
   .blog-post__link:hover {
     background-color: rgb(255, 185, 56);
@@ -229,7 +239,7 @@ body {
     background: var(--secondary-clr);
     color: white;
     font-weight: bold;
-    padding: 12px;
+    /* padding: 12px; */
     transition: all 150ms ease-in;
   }
   

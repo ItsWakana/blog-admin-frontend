@@ -13,12 +13,10 @@ const BlogPostCard = ({ post: {_id, title, content } }) => {
             <p className="blog-post__content">
             {content.length > 120 ? `${contentSliced}...` : content}
             </p>
-            {/* <button className="blog-post__button">
-                READ MORE
-            </button> */}
             <Link className="blog-post__link" to={`/posts/${_id}`}>
-                EDIT
+                Edit
             </Link>
+            <button className="blog-post__delete">Delete</button>
         </li>
         </>
     )

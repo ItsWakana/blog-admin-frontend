@@ -73,7 +73,6 @@ const BlogPostPage = ({ validatePostEdit }) => {
                     onChange={(e) => setPublishState(e.target.value)}/>
                     </div>
                     <button type="submit">Edit Post</button>
-                    {/* <CommentSection isLoggedIn={isLoggedIn} currentUser={currentUser} validateUserComment={validateUserComment} blogItem={blogItem} comments={comments} setComments={setComments}/> */}
                     <p className="blog-error">{inputError.error}</p>
                 </form>
             )}
