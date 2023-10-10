@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const BlogPostCard = ({ post: {_id, title, content } }) => {
+const BlogPostCard = ({ post: {_id, title, content }, validatePostRemoval }) => {
 
     
     const contentSliced = content.slice(0, 120);
@@ -16,7 +16,7 @@ const BlogPostCard = ({ post: {_id, title, content } }) => {
             <Link className="blog-post__link" to={`/posts/${_id}`}>
                 Edit
             </Link>
-            <button className="blog-post__delete">Delete</button>
+            <button onClick={() => validatePostRemoval(_id)}className="blog-post__delete">Delete</button>
         </li>
         </>
     )

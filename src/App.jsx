@@ -15,6 +15,7 @@ function App() {
     isLoggedIn,
     validateLogin,
     validatePostEdit,
+    validatePostRemoval,
     handleLogOut
   } = useAuth(cookies);
 
@@ -27,7 +28,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: isLoggedIn ? <BlogList currentUser={currentUser} isLoggedIn={isLoggedIn} cookies={cookies}/> : <Login validateLogin={validateLogin} isLoggedIn={isLoggedIn}/>
+          element: isLoggedIn ? <BlogList currentUser={currentUser} isLoggedIn={isLoggedIn} cookies={cookies} validatePostRemoval={validatePostRemoval}/> : <Login validateLogin={validateLogin} isLoggedIn={isLoggedIn}/>
         },
         {
           path: "/login",

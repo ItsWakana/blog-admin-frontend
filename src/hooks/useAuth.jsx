@@ -65,6 +65,22 @@ const useAuth = (cookies) => {
       }
     }
 
+    const validatePostRemoval = async (id) => {
+
+      const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${cookies.get('token')}`
+        }
+      });
+
+      if (response.status !== 200) {
+        console.log('Post removal failed');
+      } else {
+        console.log('Post removed successfully');
+      }
+    }
+
     const handleLogOut = async () => {
         cookies.remove("token");
 
@@ -77,6 +93,7 @@ const useAuth = (cookies) => {
         isLoggedIn,
         validateLogin,
         validatePostEdit,
+        validatePostRemoval,
         handleLogOut
     }
 }

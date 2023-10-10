@@ -1,7 +1,7 @@
 import useBlogPosts from "../hooks/useBlogPosts"
 import BlogPostCard from "./BlogPostCard";
 
-const BlogList = ({ currentUser, isLoggedIn }) => {
+const BlogList = ({ currentUser, isLoggedIn, validatePostRemoval }) => {
 
     const [blogPosts, error, isLoading] = useBlogPosts();
     
@@ -17,7 +17,7 @@ const BlogList = ({ currentUser, isLoggedIn }) => {
                 <ul className="blog-list">
                     {blogPosts.map((post) => (
                         <BlogPostCard key={post._id} post={post}
-                        currentUser={currentUser} isLoggedIn={isLoggedIn}/>
+                        currentUser={currentUser} isLoggedIn={isLoggedIn} validatePostRemoval={validatePostRemoval}/>
                     ))}
                 </ul>
             </div>
