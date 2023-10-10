@@ -27,6 +27,7 @@ body {
     background-color: rgb(12, 12, 12);
     color: white;
     margin-bottom: 20px;
+    padding: 10px 0px;
   }
   
   .nav-link {
@@ -38,13 +39,7 @@ body {
     background: none;
     color: white;
     font-weight: bold;
-    padding: 20px 25px;
     cursor: pointer;
-  }
-  
-  .nav-bar button:hover,
-  .nav-bar .nav-link:hover {
-    background-color: var(--card-border-clr);
   }
   
   .nav-bar a {
@@ -90,7 +85,9 @@ body {
   
   .blog-post__button,
   .blog-post__link,
-  .blog-post__delete {
+  .blog-post__delete,
+  .blog-post__create,
+  .nav-link {
     background-color: var(--secondary-clr);
     padding: 10px 15px;
     border-radius: 3px;
@@ -101,6 +98,12 @@ body {
     color: black;
     font-size: 0.8rem;
     border: solid 1px transparent;
+  }
+
+  .nav-link.create {
+    background-color: var(--secondary-clr);
+    border-radius: 25px;
+    color: black;
   }
 
   .blog-post__delete {
