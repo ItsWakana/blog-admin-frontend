@@ -239,7 +239,7 @@ body {
     background: var(--secondary-clr);
     color: white;
     font-weight: bold;
-    /* padding: 12px; */
+    padding: 12px;
     transition: all 150ms ease-in;
   }
   
