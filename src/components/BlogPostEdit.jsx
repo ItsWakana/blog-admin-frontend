@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import CommentSection from "./CommentSection";
 
-const BlogPostPage = ({ validatePostEdit }) => {
+const BlogPostEdit = ({ validatePostEdit }) => {
 
     const { postId } = useParams();
 
@@ -80,4 +80,4 @@ const BlogPostPage = ({ validatePostEdit }) => {
     );
 }
 
-export default BlogPostPage;
+export default BlogPostEdit;

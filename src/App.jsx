@@ -2,7 +2,8 @@ import BlogList from "./components/BlogList";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import Login from "./components/Login";
-import BlogPostPage from "./components/BlogPostPage";
+import BlogPostEdit from "./components/BlogPostEdit";
+import BlogPostForm from "./components/BlogPostForm";
 import useAuth from "./hooks/useAuth";
 import Cookies from "universal-cookie";
 
@@ -16,6 +17,7 @@ function App() {
     validateLogin,
     validatePostEdit,
     validatePostRemoval,
+    validatePostCreation,
     handleLogOut
   } = useAuth(cookies);
 
@@ -36,7 +38,11 @@ function App() {
         },
         {
           path: "/posts/:postId",
-          element: <BlogPostPage isLoggedIn={isLoggedIn} currentUser={currentUser} validatePostEdit={validatePostEdit} />
+          element: <BlogPostEdit isLoggedIn={isLoggedIn} currentUser={currentUser} validatePostEdit={validatePostEdit} />
+        },
+        {
+          path: "/posts/create", 
+          element: <BlogPostForm validatePostCreation={validatePostCreation}/>
         }
       ]
     }

@@ -11,7 +11,7 @@ const Layout = ({ isLoggedIn, handleLogOut }) => {
                 <li>
                     {isLoggedIn ? (
                         <>
-                        <Link className="nav-link create">
+                        <Link className="nav-link create" to="/posts/create">
                             CREATE POST
                         </Link>
                         <Link className="nav-link" to="/login"

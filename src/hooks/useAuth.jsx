@@ -65,6 +65,26 @@ const useAuth = (cookies) => {
       }
     }
 
+    const validatePostCreation = async (title, content, isPublished) => {
+      
+      const response = await fetch(`http://localhost:3000/api/posts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${cookies.get("token")}`
+        },
+        body: JSON.stringify({ title, content, isPublished })
+      });
+
+      if (response.status !== 200) {
+        console.log("Post creation failed");
+        return;
+      } else {
+        console.log("Post created successfully");
+      }
+
+    }
+
     const validatePostRemoval = async (id) => {
 
       const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
@@ -94,6 +114,7 @@ const useAuth = (cookies) => {
         validateLogin,
         validatePostEdit,
         validatePostRemoval,
+        validatePostCreation,
         handleLogOut
     }
 }
