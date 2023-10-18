@@ -50,23 +50,23 @@ body {
   .main-blog {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
   }
+  
   ul.blog-list {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
     gap: 25px;
-    width: 70%;
   }
   
   .blog-list__post {
-    background: var(--primary-clr);
-    border-radius: 8px;
-    border: solid 2px var(--card-border-clr);
+    /* background: var(--primary-clr); */
+    /* border: solid 2px var(--card-border-clr); */
     padding: 25px;
-    width: 10%;
+    width: 70%;
     height: 200px;
     min-width: 250px;
     flex: 1;
@@ -74,7 +74,7 @@ body {
   }
   
   .blog-post__heading {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     margin: 0;
   }
