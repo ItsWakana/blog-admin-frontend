@@ -70,9 +70,10 @@ const BlogPostEdit = ({ validatePostEdit }) => {
                         <Editor
                             apiKey='9co21oru5yksr9rwycxaaw02543pyof3bnomvhipsg5ghl91'
                             onInit={(evt, editor) => editorRef.current = editor}
-                            value={`<p>${blogContent}</p>`}
+                            value={blogContent}
                             onEditorChange={(newValue, editor) => {
-                                setBlogContent(editor.getContent({ format: 'text'}));
+                                // setBlogContent(editor.getContent({ format: 'text'}));
+                                setBlogContent(newValue);
                             }}
                             init={{
                             height: 500,

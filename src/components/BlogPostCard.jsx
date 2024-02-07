@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import { parser } from '../helper functions/DOMParser';
 
 const BlogPostCard = ({ post: {_id, title, content }, validatePostRemoval }) => {
 
+    const parsedHTML = parser.parseFromString(content, "text/html");
+    const parsedHTMLText = parsedHTML.body.textContent;
+    const contentSliced = parsedHTMLText.slice(0, 120);
     
-    const contentSliced = content.slice(0, 120);
-
     return (
         <>
         <li className="blog-list__post"key={_id}>
