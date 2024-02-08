@@ -57,12 +57,15 @@ const useAuth = (cookies) => {
         body: JSON.stringify({ title, content, isPublished })
       });
 
-      if (response.status !== 200) {
-        console.log("post update failed");
-        return;
-      } else {
-        console.log("Post updated successfully");
-      }
+      // if (response.status !== 200) {
+      //   console.log("post update failed");
+      //   return 0;
+      // } else {
+      //   console.log("Post updated successfully");
+      //   return 1;
+      // }
+
+      return response.status === 200;
     }
 
     const validatePostCreation = async (title, content, isPublished) => {
@@ -83,6 +86,24 @@ const useAuth = (cookies) => {
         console.log("Post created successfully");
       }
 
+    }
+
+    const validatePageCreation = async (title, isPublished) => {
+      
+      const response = await fetch(`http://localhost:3000/api/page`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${cookies.get("token")}`
+        },
+        body: JSON.stringify({title, isPublished})
+      });
+
+      if (response.status !== 200) {
+        console.log("Page creation failed");
+      } else {
+        console.log("Page created successfully");
+      }
     }
 
     const validatePostRemoval = async (id) => {
@@ -115,6 +136,7 @@ const useAuth = (cookies) => {
         validatePostEdit,
         validatePostRemoval,
         validatePostCreation,
+        validatePageCreation,
         handleLogOut
     }
 }

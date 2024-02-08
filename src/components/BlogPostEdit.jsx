@@ -48,7 +48,11 @@ const BlogPostEdit = ({ validatePostEdit }) => {
 
         const formattedPublish = publishState === 'published';
         
-        validatePostEdit(blogTitle, blogContent, formattedPublish, postId);
+        if (validatePostEdit(blogTitle, blogContent, formattedPublish, postId)) {
+            setInputError({for: '', error: 'post updated successfully'})
+        } else {
+            setInputError({for: '', error: 'post update failed'});
+        }
     }
 
     return (

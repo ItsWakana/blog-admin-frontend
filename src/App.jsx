@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import Login from "./components/Login";
 import BlogPostEdit from "./components/BlogPostEdit";
 import BlogPostForm from "./components/BlogPostForm";
+import PageCreateForm from "./components/page creation/PageCreateForm";
 import useAuth from "./hooks/useAuth";
 import Cookies from "universal-cookie";
 
@@ -18,6 +19,7 @@ function App() {
     validatePostEdit,
     validatePostRemoval,
     validatePostCreation,
+    validatePageCreation,
     handleLogOut
   } = useAuth(cookies);
 
@@ -43,6 +45,10 @@ function App() {
         {
           path: "/posts/create", 
           element: <BlogPostForm validatePostCreation={validatePostCreation}/>
+        },
+        {
+          path: "/pages/create",
+          element: <PageCreateForm validatePageCreation={validatePageCreation}/>
         }
       ]
     }

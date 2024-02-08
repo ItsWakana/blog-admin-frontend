@@ -10,8 +10,8 @@ const BlogPostCard = ({ post: {_id, title, content }, validatePostRemoval }) => 
     return (
         <>
         <li className="blog-list__post"key={_id}>
-            <p className="blog-post__heading">
-                {title}</p>
+            <h2 className="blog-post__heading">
+                {title}</h2>
             <p className="blog-post__content">
             {content.length > 120 ? `${contentSliced}...` : parsedHTMLText}
             </p>
