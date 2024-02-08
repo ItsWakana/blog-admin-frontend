@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 
 const BlogPostForm = ({ validatePostCreation }) => {
 
@@ -6,6 +7,8 @@ const BlogPostForm = ({ validatePostCreation }) => {
     const [blogContent, setBlogContent] = useState('');
     const [publishState, setPublishState] = useState('');
     const [inputError, setInputError] = useState({for: '', error: ''});
+
+    const editorRef = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -39,8 +42,31 @@ const BlogPostForm = ({ validatePostCreation }) => {
                 </div>
                 <div>
                     <label htmlFor="content">Content</label>
-                    <textarea name="content" cols="30" rows="10" value={blogContent} onChange={(e) => setBlogContent(e.target.value)}
-                    className={inputError.for === 'content' ? 'input-error' : ''}></textarea>
+                    {/* <textarea name="content" cols="30" rows="10" value={blogContent} onChange={(e) => setBlogContent(e.target.value)}
+                    className={inputError.for === 'content' ? 'input-error' : ''}></textarea> */}
+                    <Editor
+                        apiKey='9co21oru5yksr9rwycxaaw02543pyof3bnomvhipsg5ghl91'
+                        onInit={(evt, editor) => editorRef.current = editor}
+                        value={blogContent}
+                        onEditorChange={(newValue, editor) => {
+                            // setBlogContent(editor.getContent({ format: 'text'}));
+                            setBlogContent(newValue);
+                        }}
+                        init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                        ],
+                        toolbar: 'undo redo | blocks | ' +
+                            'bold italic forecolor | alignleft aligncenter ' +
+                            'alignright alignjustify | bullist numlist outdent indent | ' +
+                            'removeformat | help',
+                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                        }}
+                        />
                 </div>
                 <div>
                 <label htmlFor="published">Published</label>
