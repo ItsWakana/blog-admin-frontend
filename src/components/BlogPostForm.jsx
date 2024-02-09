@@ -1,10 +1,11 @@
 import { useState, useRef } from "react";
-import { Editor } from "@tinymce/tinymce-react";
+import ContentControl from "./page creation/ContentControl";
+import Placeholder from "./page creation/Placeholder";
 
 const BlogPostForm = ({ validatePostCreation }) => {
 
     const [blogTitle, setBlogTitle] = useState('');
-    const [blogContent, setBlogContent] = useState('');
+    // const [placeholders, setPlaceholders] = useState([]);
     const [publishState, setPublishState] = useState('');
     const [inputError, setInputError] = useState({for: '', error: ''});
 
@@ -18,16 +19,16 @@ const BlogPostForm = ({ validatePostCreation }) => {
             return;
         }
 
-        if (blogContent === '') {
-            setInputError({for: 'content', error: 'Post content is empty'});
-            return;
-        }
+        // if (blogContent === '') {
+        //     setInputError({for: 'content', error: 'Post content is empty'});
+        //     return;
+        // }
 
         setInputError({for: '', error: ''});
 
         const formattedPublish = publishState === 'published';
         
-        validatePostCreation(blogTitle, blogContent, formattedPublish);
+        validatePostCreation(blogTitle, formattedPublish);
     }
 
     return (
@@ -40,33 +41,15 @@ const BlogPostForm = ({ validatePostCreation }) => {
                     onChange={(e) => setBlogTitle(e.target.value)}
                     className={inputError.for === 'title' ? 'input-error' : ''} />
                 </div>
-                <div>
-                    <label htmlFor="content">Content</label>
-                    {/* <textarea name="content" cols="30" rows="10" value={blogContent} onChange={(e) => setBlogContent(e.target.value)}
-                    className={inputError.for === 'content' ? 'input-error' : ''}></textarea> */}
-                    <Editor
-                        apiKey='9co21oru5yksr9rwycxaaw02543pyof3bnomvhipsg5ghl91'
-                        onInit={(evt, editor) => editorRef.current = editor}
-                        value={blogContent}
-                        onEditorChange={(newValue, editor) => {
-                            // setBlogContent(editor.getContent({ format: 'text'}));
-                            setBlogContent(newValue);
-                        }}
-                        init={{
-                        height: 500,
-                        menubar: false,
-                        plugins: [
-                            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-                        ],
-                        toolbar: 'undo redo | blocks | ' +
-                            'bold italic forecolor | alignleft aligncenter ' +
-                            'alignright alignjustify | bullist numlist outdent indent | ' +
-                            'removeformat | help',
-                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                        }}
-                        />
+                <div className="row">
+                    <div className="page__placeholder-full-width">
+                        <Placeholder />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="page__placeholder-full-width">
+                        <Placeholder />
+                    </div>
                 </div>
                 <div>
                 <label htmlFor="published">Published</label>
