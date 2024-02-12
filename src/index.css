@@ -305,17 +305,33 @@ body {
     width: 100%;
     margin-bottom: 15px;
   }
-  .page__placeholder-full-width {
+  .page__placeholder.full-width {
     height: 200px;
     width: 100%;
-    background: red;
+    background: rgb(82, 82, 82);
   }
-  .page__placeholder-half-width {
+  .page__placeholder.half-width {
     height: 200px;
     width: 50%;
     margin: 15px;
-    background: red;
+    background: rgb(82, 82, 82);
   }
+
+  .content-control-drag {
+    background: grey;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .page__placeholder {
+    transition: all 250ms;
+  }
+
+  .page__placeholder.dragging-over {
+    background: rgb(104, 104, 104);
+  }
+  
   @keyframes lds-dual-ring {
     0% {
       transform: rotate(0deg);

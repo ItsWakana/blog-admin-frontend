@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ContentControl from "./page creation/ContentControl";
 import Placeholder from "./page creation/Placeholder";
 
@@ -9,6 +9,37 @@ const BlogPostForm = ({ validatePostCreation }) => {
     const [publishState, setPublishState] = useState('');
     const [inputError, setInputError] = useState({for: '', error: ''});
 
+    useEffect(() => {
+
+        const contentControlButton = document.querySelector('.content-control-drag');
+
+        const placeholderContainers = document.querySelectorAll('.page__placeholder');
+
+        contentControlButton.addEventListener('dragstart', () => {
+            console.log('start drag');
+        });
+
+        placeholderContainers.forEach((container) => {
+            container.addEventListener('dragover', (e) => {
+                container.classList.add('dragging-over');
+                e.preventDefault();
+            });
+
+            container.addEventListener('dragleave', () => {
+                container.classList.remove('dragging-over');
+            });
+
+            container.addEventListener('drop', () => {
+                console.log('you dorpped here');
+                container.classList.remove('dragging-over');
+            });
+        });
+
+        placeholderContainers.forEach((container) => {
+
+        });
+
+    },[]);
     const editorRef = useRef(null);
 
     const handleSubmit = (e) => {
@@ -34,6 +65,7 @@ const BlogPostForm = ({ validatePostCreation }) => {
     return (
         <div className="post-wrapper">
             <h1>Create post</h1>
+            <div className="content-control-drag" draggable="true">Content Control</div>
             <form className="blog-post-form" onSubmit={handleSubmit}> 
                 <div>
                     <label htmlFor="title">Title</label>
@@ -42,12 +74,12 @@ const BlogPostForm = ({ validatePostCreation }) => {
                     className={inputError.for === 'title' ? 'input-error' : ''} />
                 </div>
                 <div className="row">
-                    <div className="page__placeholder-full-width">
+                    <div className="page__placeholder full-width">
                         <Placeholder />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="page__placeholder-full-width">
+                    <div className="page__placeholder full-width">
                         <Placeholder />
                     </div>
                 </div>
