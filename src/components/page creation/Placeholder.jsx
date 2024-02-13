@@ -1,6 +1,6 @@
-const Placeholder = () => {
+const Placeholder = ({ id }) => {
     return (
-        <p>Placeholder</p>
+        <div data-placeholderid={id}>{`Placeholder ${id}`}</div>
     )
 }
 

@@ -5,7 +5,7 @@ import Placeholder from "./page creation/Placeholder";
 const BlogPostForm = ({ validatePostCreation }) => {
 
     const [blogTitle, setBlogTitle] = useState('');
-    // const [placeholders, setPlaceholders] = useState([]);
+    const [placeholders, setPlaceholders] = useState([]);
     const [publishState, setPublishState] = useState('');
     const [inputError, setInputError] = useState({for: '', error: ''});
 
@@ -32,15 +32,32 @@ const BlogPostForm = ({ validatePostCreation }) => {
             container.addEventListener('drop', () => {
                 console.log('you dorpped here');
                 container.classList.remove('dragging-over');
+                const placeholderId = container.firstChild.dataset.placeholderid;
+
+                console.log(placeholderId);
             });
         });
 
-        placeholderContainers.forEach((container) => {
-
-        });
-
+        findPlaceholdersAndSetState();
     },[]);
     const editorRef = useRef(null);
+
+    function findPlaceholdersAndSetState() {
+        const placeholderElements = document.querySelectorAll('.page__placeholder');
+        const placeholderArray = [];
+
+        placeholderElements.forEach((element) => {
+            
+            const obj = {
+                id: element.firstChild.dataset.placeholderid,
+                content: []
+            }
+            placeholderArray.push(obj);
+        });
+
+        setPlaceholders(placeholderArray);
+        console.log(placeholderArray);
+    } 
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -75,12 +92,12 @@ const BlogPostForm = ({ validatePostCreation }) => {
                 </div>
                 <div className="row">
                     <div className="page__placeholder full-width">
-                        <Placeholder />
+                        <Placeholder id="1"/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="page__placeholder full-width">
-                        <Placeholder />
+                        <Placeholder id="2"/>
                     </div>
                 </div>
                 <div>
